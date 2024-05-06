@@ -1,56 +1,70 @@
-<html>
-<head>
-  <link rel="stylesheet" href="/static/style.css">
-  <link rel="stylesheet" href="/static/bootstrap.min.css">
-</head>
-<div>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:darkturquoise; height: 1in;">
-    <div class="container-fluid">
-      <h2 style="padding-right: 5%;">Dealerships</h2>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" style="font-size: larger;" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" style="font-size: larger;" href="/about">About Us</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" style="font-size: larger;" href="/contact">Contact Us</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<!DOCTYPE html>
+<html lang="en">
 
-  <div class="card" style="width: 80%;margin: auto; margin-top: 2%;margin-bottom: 2%">
-    <div class="banner" name="contact-header">
-        <img class="card-img-top" src="/static/carlot.jpg" alt="Card image" style="width: 50%;margin: auto; margin-top:20px">
-    </div>
-    <hr style="margin: 20px">
-        <div style="display: flex;flex-direction: row; text-align: center;">
-            <div class="card" style="width: 50%;border: none">
-                <img class="card-img-top" src="/static/contactus.png" alt="Card image" style="width:30%">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: darkturquoise;">
+            <div class="container-fluid">
+                <h2 class="navbar-brand" style="padding-right: 5%;">Dealerships</h2>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/about">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/contact">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class= "vertical" style="border-left: 1px solid black;
-            height: 200px;"></div>
-            <div class="card" style="width: 50%;border: none;color: #43A6C6; font-size: 75%">
-                <p style="text-align: center;font-weight: bold; ">
-                <b>Contact Customer Service</b> <br>
-                support@example.com <br>
-                <b>Contact National Advertising team</b> <br>
-                NationalSales@example.com <br>
-                <b>Contact our Public Relations team</b> <br>
-                PR@example.com <br>
-                <b>Contact the AmericanCarDealers.com Ofices</b> <br>
-                213-121-232 <br>
-                <b>Become a AmericanCarDealers car dealer</b> <br>
-                Visit growWithAmericanCarDealers.com 
-                </p>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card mx-auto my-4" style="width: 80%;">
+            <div class="banner">
+                <img class="card-img-top mx-auto" src="/static/carlot.jpg" alt="Car lot" style="width: 50%; margin-top: 20px;">
+            </div>
+            <hr class="my-4" style="margin:20px">
+            <div class="row text-center">
+                <div class="col-md-6">
+                    <img class="img-fluid" src="/static/contactus.png" alt="Contact Us" style="width: 30%;">
+                </div>
+                <div class="col-md-1 d-flex align-items-center justify-content-center">
+                    <div class="d-none d-md-block" style="border-left: 1px solid black; height: 200px;"></div>
+                </div>
+                <div class="col-md-5" style="color: #43A6C6; font-size: 75%;">
+                    <p>
+                        <strong>Contact Customer Service</strong><br>
+                        support@example.com<br>
+                        <strong>Contact National Advertising Team</strong><br>
+                        NationalSales@example.com<br>
+                        <strong>Contact Our Public Relations Team</strong><br>
+                        PR@example.com<br>
+                        <strong>Contact the AmericanCarDealers.com Offices</strong><br>
+                        213-121-232<br>
+                        <strong>Become an AmericanCarDealers Car Dealer</strong><br>
+                        Visit growWithAmericanCarDealers.com
+                    </p>
+                </div>
             </div>
         </div>
+    </main>
+</body>
 
-  </div>
+</html>
