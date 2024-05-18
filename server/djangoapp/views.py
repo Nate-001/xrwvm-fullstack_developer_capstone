@@ -103,16 +103,22 @@ def get_dealerships(request, state="All"):
 # Create a `get_dealer_reviews` view to render the reviews of a dealer
 def get_dealer_reviews(request, dealer_id):
     # if dealer id has been provided
-    if(dealer_id):
-        endpoint = "/fetchReviews/dealer/"+str(dealer_id)
+    if dealer_id:
+        endpoint = "/fetchReviews/dealer/" + str(dealer_id)
         reviews = get_request(endpoint)
-        for review_detail in reviews:
-            response = analyze_review_sentiments(review_detail['review'])
-            print(response)
-            review_detail['sentiment'] = response['sentiment']
-        return JsonResponse({"status":200,"reviews":reviews})
+        if reviews:
+            for review_detail in reviews:
+                response = analyze_review_sentiments(review_detail['review'])
+                if response:
+                    review_detail['sentiment'] = response.get('sentiment')
+                else:
+                    review_detail['sentiment'] = None
+            return JsonResponse({"status": 200, "reviews": reviews})
+        else:
+            return JsonResponse({"status": 404, "message": "Reviews not found for dealer_id: {}".format(dealer_id)})
     else:
-        return JsonResponse({"status":400,"message":"Bad Request"})
+        return JsonResponse({"status": 400, "message": "Bad Request"})
+
 
 
 # Create a `get_dealer_details` view to render the dealer details
@@ -124,7 +130,9 @@ def get_dealer_details(request, dealer_id):
     else:
         return JsonResponse({"status":400,"message":"Bad Request"})
 
+
 # Create a `add_review` view to submit a review
+@csrf_exempt
 def add_review(request):
     if(request.user.is_anonymous == False):
         data = json.loads(request.body)
@@ -136,11 +144,11 @@ def add_review(request):
     else:
         return JsonResponse({"status":403,"message":"Unauthorized"})
 
-def post_review(data_dict):
-    request_url = backend_url+"/insert_review"
-    try:
-        response = requests.post(request_url,json=data_dict)
-        print(response.json())
-        return response.json()
-    except:
-        print("Network exception occurred")
+#def post_review(data_dict):
+#    request_url = backend_url+"/insert_review"
+#    try:
+#        response = requests.post(request_url,json=data_dict)
+#        print(response.json())
+#        return response.json()
+#    except:
+#        print("Network exception occurred")
