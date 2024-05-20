@@ -1,22 +1,18 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
-from django.contrib.auth.models import User
-from django.contrib.auth import login, authenticate, logout
-from django.contrib import messages
-from datetime import datetime
-from django.views.decorators.csrf import csrf_exempt
 import logging
 import json
+
+from django.http import JsonResponse
+from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate, logout
 
 from .models import CarMake, CarModel
 from .restapis import get_request, analyze_review_sentiments, post_review
 from .populate import initiate
 
-# Get an instance of a logger
+
 logger = logging.getLogger(__name__)
 
 
-# Create your views here.
 
 @csrf_exempt
 def login_user(request):
