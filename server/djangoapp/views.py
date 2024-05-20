@@ -54,7 +54,10 @@ def registration(request):
         email=email
     )
     login(request, user)
-    return JsonResponse({"userName": username, "status": "Authenticated"})
+    return JsonResponse(
+        {"userName": username, "status": "Authenticated"}
+    )
+
 
 
 def get_cars(request):
@@ -63,9 +66,10 @@ def get_cars(request):
         initiate()
     car_models = CarModel.objects.select_related('car_make')
     cars = [
-    {"CarModel": car_model.name, "CarMake": car_model.car_make.name}
-    for car_model in car_models
+        {"CarModel": car_model.name, "CarMake": car_model.car_make.name}
+        for car_model in car_models
     ]
+
     return JsonResponse({"CarModels": cars})
 
 
@@ -81,15 +85,18 @@ def get_dealer_reviews(request, dealer_id):
         reviews = get_request(endpoint)
         if reviews:
             for review_detail in reviews:
-                sentiment_response = analyze_review_sentiments(review_detail['review'])
+                sentiment_response = analyze_review_sentiments(
+                    review_detail['review']
+                )
                 if sentiment_response:
                     review_detail['sentiment'] = sentiment_response.get('sentiment')
                 else:
                     review_detail['sentiment'] = None
             return JsonResponse({"status": 200, "reviews": reviews})
         return JsonResponse(
-            {"status": 404, "message": f"Reviews not found for dealer_id: {dealer_id}"}
-        )
+            {"status": 404,
+            "message": f"Reviews not found for dealer_id: {dealer_id}"}
+
     return JsonResponse({"status": 400, "message": "Bad Request"})
 
 
@@ -110,5 +117,7 @@ def add_review(request):
             return JsonResponse({"status": 200})
         except Exception as e:
             logger.error(f"Error in posting review: {e}")
-            return JsonResponse({"status": 401, "message": "Error in posting review"})
+            return JsonResponse(
+                {"status": 401, "message": "Error in posting review"}
+            )
     return JsonResponse({"status": 403, "message": "Unauthorized"})
