@@ -1,6 +1,6 @@
 import logging
 import json
-
+from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
@@ -9,9 +9,7 @@ from .models import CarMake, CarModel
 from .restapis import get_request, analyze_review_sentiments, post_review
 from .populate import initiate
 
-
 logger = logging.getLogger(__name__)
-
 
 
 @csrf_exempt
@@ -42,7 +40,6 @@ def registration(request):
     email = data['email']
 
     username_exist = User.objects.filter(username=username).exists()
-    email_exist = User.objects.filter(email=email).exists()
 
     if username_exist:
         return JsonResponse({"userName": username, "error": "Already Registered"})
@@ -63,7 +60,10 @@ def get_cars(request):
     if count == 0:
         initiate()
     car_models = CarModel.objects.select_related('car_make')
-    cars = [{"CarModel": car_model.name, "CarMake": car_model.car_make.name} for car_model in car_models]
+    cars = [
+    {"CarModel": car_model.name, "CarMake": car_model.car_make.name} 
+    for car_model in car_models
+    ]
     return JsonResponse({"CarModels": cars})
 
 
@@ -80,9 +80,14 @@ def get_dealer_reviews(request, dealer_id):
         if reviews:
             for review_detail in reviews:
                 sentiment_response = analyze_review_sentiments(review_detail['review'])
-                review_detail['sentiment'] = sentiment_response.get('sentiment') if sentiment_response else None
+                if sentiment_response:
+                    review_detail['sentiment'] = sentiment_response.get('sentiment')
+                else:
+                    review_detail['sentiment'] = None
             return JsonResponse({"status": 200, "reviews": reviews})
-        return JsonResponse({"status": 404, "message": f"Reviews not found for dealer_id: {dealer_id}"})
+        return JsonResponse(
+            {"status": 404, "message": f"Reviews not found for dealer_id: {dealer_id}"}
+        )
     return JsonResponse({"status": 400, "message": "Bad Request"})
 
 
