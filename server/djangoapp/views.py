@@ -96,7 +96,7 @@ def get_dealer_reviews(request, dealer_id):
         return JsonResponse(
             {"status": 404,
             "message": f"Reviews not found for dealer_id: {dealer_id}"}
-
+        )
     return JsonResponse({"status": 400, "message": "Bad Request"})
 
 
