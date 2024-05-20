@@ -6,43 +6,43 @@ from django.conf import settings
 
 urlpatterns = [
     path(
-        'admin/', 
+        'admin/',
         admin.site.urls
     ),
     path(
-        'djangoapp/', 
+        'djangoapp/',
         include('djangoapp.urls')
     ),
     path(
-        'about/', 
+        'about/',
         TemplateView.as_view(template_name="About.html"), name='about'
     ),
     path(
-        'contact/', 
+        'contact/',
         TemplateView.as_view(template_name="Contact.html"), name='contact'
     ),
     path(
-        'login/', 
+        'login/',
         TemplateView.as_view(template_name="index.html"), name='login'
     ),
     path(
-        'register/', 
+        'register/',
         TemplateView.as_view(template_name="index.html"), name='register'
     ),
     path(
-        'dealers/', 
+        'dealers/',
         TemplateView.as_view(template_name="index.html"), name='dealers'
     ),
     path(
-        'dealer/<int:dealer_id>/', 
+        'dealer/<int:dealer_id>/',
         TemplateView.as_view(template_name="index.html"), name='dealer_detail'
     ),
     path(
-        'postreview/<int:dealer_id>/', 
+        'postreview/<int:dealer_id>/',
         TemplateView.as_view(template_name="index.html"), name='post_review'
     ),
     path(
-        '', 
+        '',
         TemplateView.as_view(template_name="Home.html"), name='home'
     ),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
