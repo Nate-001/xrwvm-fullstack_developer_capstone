@@ -19,6 +19,9 @@ def get_request(endpoint, **kwargs):
         response = requests.get(request_url)
         response.raise_for_status()
         return response.json()
+    except requests.exceptions.HTTPError as e:
+        print(f"HTTP error occurred: {e}")
+        return {}
     except requests.exceptions.RequestException as e:
         print(f"Network exception occurred: {e}")
         return {}
@@ -29,6 +32,9 @@ def analyze_review_sentiments(text):
         response = requests.get(request_url)
         response.raise_for_status()
         return response.json()
+    except requests.exceptions.HTTPError as e:
+        print(f"HTTP error occurred: {e}")
+        return {}
     except requests.exceptions.RequestException as e:
         print(f"Network exception occurred: {e}")
         return {}
@@ -39,6 +45,9 @@ def post_review(data_dict):
         response = requests.post(request_url, json=data_dict)
         response.raise_for_status()
         return response.json()
+    except requests.exceptions.HTTPError as e:
+        print(f"HTTP error occurred: {e}")
+        return {}
     except requests.exceptions.RequestException as e:
         print(f"Network exception occurred: {e}")
         return {}
