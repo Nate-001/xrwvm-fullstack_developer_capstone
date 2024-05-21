@@ -59,7 +59,6 @@ def registration(request):
     )
 
 
-
 def get_cars(request):
     count = CarMake.objects.count()
     if count == 0:
@@ -89,7 +88,9 @@ def get_dealer_reviews(request, dealer_id):
                     review_detail['review']
                 )
                 if sentiment_response:
-                    review_detail['sentiment'] = sentiment_response.get('sentiment')
+                    review_detail['sentiment'] = sentiment_response.get(
+                        'sentiment'
+                    )
                 else:
                     review_detail['sentiment'] = None
             return JsonResponse({"status": 200, "reviews": reviews})
