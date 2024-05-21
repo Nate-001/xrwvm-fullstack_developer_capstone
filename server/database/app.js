@@ -18,7 +18,7 @@ mongoose.connect("mongodb://mongo_db:27017/", { dbName: 'dealershipsDB' });
 const Reviews = require('./review');
 const Dealerships = require('./dealership');
 
-(async () => {
+(async function() {
   try {
     await Reviews.deleteMany({});
     await Reviews.insertMany(reviewsData);

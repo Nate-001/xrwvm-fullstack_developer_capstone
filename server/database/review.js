@@ -1,9 +1,10 @@
-/* eslint-env es6 */
-
+/* eslint-disable-next-line */
 const mongoose = require('mongoose');
 
+/* eslint-disable-next-line */
 const Schema = mongoose.Schema;
 
+/* eslint-disable-next-line */
 const reviews = new Schema({
     id: {
         type: Number,
