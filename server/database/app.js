@@ -1,10 +1,11 @@
-/* eslint-env es6 */
+/* jshint esversion: 8 */
 
 const express = require('express');
 const mongoose = require('mongoose');
 const fs = require('fs');
 const cors = require('cors');
 const bodyParser = require('body-parser'); // Imported bodyParser separately
+
 const app = express();
 const port = 3030;
 

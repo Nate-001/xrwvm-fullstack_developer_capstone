@@ -1,7 +1,8 @@
-/* eslint-disable */
+/* eslint-env es6 */
+
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose; // Destructuring binding
 
 const reviewsSchema = new Schema({
   id: {
