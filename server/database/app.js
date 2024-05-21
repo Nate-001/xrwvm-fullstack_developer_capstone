@@ -4,11 +4,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const fs = require('fs');
 const cors = require('cors');
+const bodyParser = require('body-parser'); // Imported bodyParser separately
 const app = express();
 const port = 3030;
 
 app.use(cors());
-app.use(require('body-parser').urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false })); // Used bodyParser directly
 
 const reviewsData = JSON.parse(fs.readFileSync("reviews.json", 'utf8')).reviews;
 const dealershipsData = JSON.parse(fs.readFileSync("dealerships.json", 'utf8')).dealerships;
@@ -18,7 +19,7 @@ mongoose.connect("mongodb://mongo_db:27017/", { dbName: 'dealershipsDB' });
 const Reviews = require('./review');
 const Dealerships = require('./dealership');
 
-(async function() {
+(async () => {
   try {
     await Reviews.deleteMany({});
     await Reviews.insertMany(reviewsData);
