@@ -2,9 +2,9 @@
 
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose; // Destructuring binding
 
-const dealerships = new Schema({
+const dealershipsSchema = new Schema({
   id: {
     type: Number,
     required: true,
@@ -42,4 +42,4 @@ const dealerships = new Schema({
   }
 });
 
-module.exports = mongoose.model('dealerships', dealerships);
+module.exports = mongoose.model('dealerships', dealershipsSchema);

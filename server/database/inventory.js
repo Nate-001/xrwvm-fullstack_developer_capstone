@@ -1,11 +1,9 @@
 /* eslint-env es6 */
 
-const { Int32 } = require('mongodb');
 const mongoose = require('mongoose');
+const { Schema } = mongoose; // Destructuring binding
 
-const Schema = mongoose.Schema;
-
-const cars = new Schema({
+const carsSchema = new Schema({
   dealer_id: {
     type: Number,
     required: true
@@ -32,4 +30,4 @@ const cars = new Schema({
   }
 });
 
-module.exports = mongoose.model('cars', cars);
+module.exports = mongoose.model('cars', carsSchema);
