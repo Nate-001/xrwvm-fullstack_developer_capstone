@@ -81,7 +81,7 @@ const Dealers = () => {
               <td>{dealer.zip}</td>
               <td>{dealer.state}</td>
               {isLoggedIn && (
-                <td>
+                <td>	  
                   <a href={`/postreview/${dealer.id}`}>
                     <img src={review_icon} className="review_icon" alt="Post Review" />
                   </a>

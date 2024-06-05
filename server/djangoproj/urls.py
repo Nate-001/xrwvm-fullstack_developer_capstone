@@ -42,6 +42,10 @@ urlpatterns = [
         TemplateView.as_view(template_name="index.html"), name='post_review'
     ),
     path(
+        'searchcars/<int:dealer_id>',
+        TemplateView.as_view(template_name="index.html")
+    ),	
+    path(
         '',
         TemplateView.as_view(template_name="Home.html"), name='home'
     ),
